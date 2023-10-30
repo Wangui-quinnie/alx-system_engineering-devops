@@ -19,4 +19,5 @@
 - Single Point of Failure (SPOF): While the infrastructure has redundancy and load balancing, individual components (servers, load balancer) may still be SPOFs. To mitigate this, additional redundant systems, failover mechanisms, or clustering can be implemented.
 - Security Issues: The infrastructure lacks a firewall and HTTPS, leaving it vulnerable to potential security threats. Implementing a firewall and enabling HTTPS (SSL/TLS) would enhance security and protect sensitive data transmitted between users and the website.
 - Monitoring: The infrastructure does not include monitoring tools to track system performance, resource utilization, or potential issues. Implementing monitoring solutions would enable proactive detection and resolution of problems, optimizing the overall infrastructure's stability and performance.
-https://imgur.com/8XfQecL
+
+https://imgur.com/TLfcpOR
