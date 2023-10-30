@@ -1,0 +1,33 @@
+- 3 Servers: Host the application and database components.
+- 1 Load Balancer (SSL Termination): Handles SSL termination and distributes incoming traffic across the servers.
+- 1 Web Server (Nginx): Handles initial connections, serves static files, and forwards dynamic requests.
+- 1 Application Server: Processes dynamic requests and runs the application code.
+- 1 Database (MySQL): Stores and retrieves the website's structured data.
+- 3 Firewalls: Protect the infrastructure by filtering and monitoring network traffic.
+- 1 SSL Certificate: Enables HTTPS encryption for secure communication with www.foobar.com.
+- 3 Monitoring Clients: Collect data for monitoring services like Sumologic or other monitoring tools.
+- User enters www.foobar.com into their web browser.
+DNS - The domain name www.foobar.com is registered and configured with a DNS provider.
+- The DNS provider directs the domain to the load balancer's IP address.	
+Load Balancer (SSL Termination): - Handles SSL termination, decrypting incoming HTTPS traffic, and distributing it across the servers.
+- Provides scalability, redundancy, and centralized SSL/TLS security management.
+Web Server (Nginx): - Handles initial connections from users' browsers.
+- Serves static files, forwards dynamic requests to the application server, and enforces SSL connection.
+Application Server: - Processes dynamic requests forwarded from the web server.
+- Runs the application code, generates dynamic content, and interacts with the database.
+Database (MySQL): - Provides secure storage and retrieval of structured website data.
+- Implements replication and backup strategies to ensure data availability and integrity.
+Firewalls:- Protect the infrastructure by filtering incoming and outgoing network traffic.
+- Control access, enforce security policies, and detect/prevent unauthorized access or attacks.
+SSL Certificate: - Enables HTTPS protocol, providing secure and encrypted communication between users and the website.
+- Authenticates the website, ensures data confidentiality, and integrity during transmission.
+Monitoring Clients: - Collect data for monitoring services like Sumologic or other monitoring tools.
+- Gather information about server health, performance, resource utilization, and potential issues.
+		Issues with this Infrastructure:
+- Terminating SSL at the Load Balancer: Terminating SSL at the load balancer level can be an issue if end-to-end encrypted communication is required between the web server and the application server. In such cases, additional security measures like SSL communication between web server and application server may be needed.
+
+- Identical Server Components: Having servers with identical components (database, web server, and application server) might be a problem in terms of maintenance, scalability, and flexibility. Different components may have different resource requirements, and deploying the same components on every server might not be optimal. Utilizing specialized servers for specific roles can enhance efficiency and scalability.
+
+- Single MySQL Server for Writes: Having only one MySQL server capable of accepting writes can become a single point of failure (SPOF) and a potential performance bottleneck. Implementing database clustering or replication mechanisms can help mitigate this issue.
+
+https://imgur.com/Dna1yr6
