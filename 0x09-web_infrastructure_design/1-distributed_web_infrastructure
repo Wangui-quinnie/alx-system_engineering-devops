@@ -1,0 +1,22 @@
+- 2 Servers: Host the application and database components.
+- 1 Load Balancer (HAproxy): Distributes incoming traffic across the servers.
+- 1 Web Server (Nginx): Handles initial connections and serves static files.
+- 1 Application Server: Processes dynamic requests and runs the application.
+- 1 Database (MySQL): Stores and retrieves the website's structured data.   
+- User enters www.foobar.com into their web browser.   
+- DNS: The domain name www.foobar.com is registered and configured with a DNS provider.   
+- The DNS provider directs the domain to the load balancer's IP address.   
+- Load Balancer (HAproxy): Distributes incoming traffic across the two servers using a distribution algorithm (e.g., round-robin).   
+- Enables Active-Active setup, where both servers actively handle requests simultaneously, providing load balancing and redundancy.   
+- Web Server (Nginx): Handles initial connections from users' browsers.   
+- Serves static files and forwards dynamic requests to the application server.   
+- Application Server: Processes dynamic requests forwarded from the web server.   
+- Runs the application code to generate dynamic content and interacts with the database.   
+- Database (MySQL): Utilizes a Primary-Replica (Master-Slave) cluster for data replication and redundancy.   
+- The Primary node handles write operations and replicates changes to the Replica nodes.   
+- The Replica nodes handle read operations, providing improved scalability and fault tolerance.
+		Issues with this Infrastructure:
+- Single Point of Failure (SPOF): While the infrastructure has redundancy and load balancing, individual components (servers, load balancer) may still be SPOFs. To mitigate this, additional redundant systems, failover mechanisms, or clustering can be implemented.
+- Security Issues: The infrastructure lacks a firewall and HTTPS, leaving it vulnerable to potential security threats. Implementing a firewall and enabling HTTPS (SSL/TLS) would enhance security and protect sensitive data transmitted between users and the website.
+- Monitoring: The infrastructure does not include monitoring tools to track system performance, resource utilization, or potential issues. Implementing monitoring solutions would enable proactive detection and resolution of problems, optimizing the overall infrastructure's stability and performance.
+https://imgur.com/8XfQecL
