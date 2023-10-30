@@ -1,0 +1,21 @@
+- A user wants to access the website by typing www.foobar.com into their web browser.   
+- The domain name www.foobar.com is registered and configured with a DNS (Domain Name System) provider.
+- A DNS record (A record) is set up to point the www subdomain to the server's IP address, which in this case is 8.8.8.8.   
+- When the user enters www.foobar.com, the DNS service resolves it to the server's IP address.
+- The server (hosted at IP address 8.8.8.8) is a physical or virtual machine that handles requests and serves the website.
+- It runs the necessary software to process requests and respond with the appropriate content.
+- The server communicates over the internet with the user's computer through TCP/IP (Transmission Control Protocol/Internet Protocol).
+- The web server, in this case, Nginx, handles the initial connection and HTTP(s) requests from the user's browser.
+- It serves static files, handles incoming HTTP requests, and forwards dynamic requests to the application server.
+- The web server plays a crucial role in efficiently serving the website's content to the user.
+- The application server handles the dynamic processing of requests, running the website's code base to generate dynamic content and interact with databases.
+- It takes requests forwarded from the web server, processes them, and generates responses for the web server to send back to the user.
+- The server communicates with the application server to execute the necessary logic and generate the appropriate responses.
+- The MySQL database is responsible for storing and retrieving structured data for the website.
+- It handles queries from the application server and stores data such as user information, content, and other necessary information.
+- The application sever communicates with the database to retrieve or update data as required by the website.
+	Issues with this Infrastructure:
+- Single Point of Failure (SPOF): If the server or any critical component fails, the entire infrastructure will be unavailable. To mitigate this risk, redundant systems or failover mechanisms can be implemented.
+- Downtime during maintenance: When deploying new code or performing maintenance tasks, the web server needs to be restarted, resulting in temporary downtime and unavailability of the website. This can be mitigated by implementing load balancers or redundancy measures.
+- Limited scalability: With this single-server infrastructure, scaling to handle high incoming traffic can be challenging. As the traffic increases, the server's resources become limited. A solution for scaling could involve load balancing techniques, using multiple servers, or utilizing cloud-based infrastructure.
+https://imgur.com/zycQHdY
