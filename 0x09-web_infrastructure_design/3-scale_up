@@ -1,0 +1,13 @@
+- 2 Servers: One server will host the web server, and the other server will host the application server and the database.
+- Load Balancer (HAproxy): The load balancer is configured as a cluster with the other load balancer to distribute incoming traffic and provide high availability.
+- Web Server: This server will handle initial connections, serve static files, and handle HTTP requests.
+- Application Server: This server will process dynamic requests and run the application code.
+- Database: This server will store and retrieve data for the application.
+
+By splitting the components onto their own servers, you can achieve better resource allocation, performance, and scalability. It also provides the flexibility to scale and optimize each component individually.
+
+- Load Balancer: The load balancer provides high availability and distributes incoming traffic across multiple servers. By configuring it as a cluster with the other load balancer in the infrastructure, redundancy is achieved, ensuring that the system remains available even if one load balancer fails.
+- Web Server: Splitting the web server onto its own server allows for better resource allocation and easier management of static file serving and HTTP request handling. It helps improve the performance and scalability of the infrastructure.
+- Application Server: Separating the application server onto its own server allows for dedicated resources and isolated performance. It can handle the dynamic processing of requests, ensuring optimal performance and scalability.
+- Database: Placing the database on a separate server provides better resource allocation and isolation. It allows for efficient data storage, retrieval, and management.
+https://imgur.com/rVllfkA
