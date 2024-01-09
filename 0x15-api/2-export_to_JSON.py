@@ -38,14 +38,14 @@ def get_todo_list_progress(employee_id):
         # Prepare JSON structure
         json_data = {
             str(employee_id): [
-            {
-            "task": task["title"],
-            "completed": task["completed"],
-            "username": employee_name
+                {
+                    "task": task["title"],
+                    "completed": task["completed"],
+                    "username": employee_name
+                }
+                for task in todos_data
+            ]
         }
-            for task in todos_data
-        ] 
-    } 
         with open(json_filename, 'w') as json_file:
             json.dump(json_data, json_file)
 
