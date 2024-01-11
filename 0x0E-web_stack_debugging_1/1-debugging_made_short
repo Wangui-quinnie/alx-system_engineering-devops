@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# This script configures an nginx server to listen using port 80
-ln -sf /etc/nginx/sites-available/default /etc/sites-enabled/default
+# A short script to configure nginx to listen on port 80
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 service nginx start
-kill "$(pgrep 'nginx' | head -n 1)"
+kill "$(pgrep 'nginx' | head -1)"
