@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
-sed -i 's/listen 80 default_server;/listen 80 default_server;\n    listen $(hostname -I | cut -d" " -f1):80;/' /etc/nginx/sites-available/default
-nginx -s reload || nginx
+# This script configures an nginx server to listen using port 80
+ln -sf /etc/nginx/sites-available/default /etc/sites-enabled/default
+service nginx restart
+kill "$(pgrep 'nginx' | head -n 1)"
