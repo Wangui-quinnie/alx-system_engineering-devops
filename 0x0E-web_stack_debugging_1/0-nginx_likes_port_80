@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Install necessary tools for debugging
+apt-get update
+apt-get install -y net-tools curl
+
+# Identify the issue
+current_ip=$(hostname -I | cut -d' ' -f1)
+nginx_config="/etc/nginx/sites-available/default"
+
+# Modify Nginx configuration
+sed -i "s/listen 80 default_server;/listen 80 default_server;\n    listen $current_ip:80;/" $nginx_config
+
+# Restart Nginx
+service nginx restart
