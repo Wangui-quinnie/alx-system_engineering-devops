@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Script that configures an lb-01 server with HAProxy
+
+sudo apt -y update
+sudo apt -y upgrade
+sudo apt-get install -y haproxy
+
+echo "
+
+frontend http_front
+    bind *:80
+    mode http
+    default_backend http_back
+
+backend http_back
+    mode http
+    balance roundrobin
+    server 307440-web-01 18.209.179.13:80 check
+    server 307440-web-02 52.91.133.149:80 check
+    " | sudo tee /etc/haproxy/haproxy.cfg
+
+sudo service haproxy restart
