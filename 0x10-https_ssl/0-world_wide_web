@@ -1,32 +1,28 @@
 #!/usr/bin/env bash
-# A script that displays information about sub domains
+# A script that checks and displays DNS information for a given domain name and its predefined
+# subdomains or for a specific subdomain within that domain.
 
-get_record_info() {
-    local subdomain="$1"
-    local domain="$2"
+domain_check() {
+ domain_names=("www" "lb-01" "web-01" "web-02")
 
-    local result=$(dig "${subdomain}.${domain}" +short)
-
-    if [ -z "$result" ]; then
-        echo "The subdomain ${subdomain} does not exist for ${domain}"
-    else
-        local record_type=$(dig "${subdomain}.${domain}" | awk '/ANSWER SECTION:/ {getline; print $4}')
-        echo "The subdomain ${subdomain} is a ${record_type} record and points to ${result}"
-    fi
+ for h in "${domain_names[@]}";
+ do
+  dig "${h}"."$1" | grep -A1 'ANSWER SECTION:' | \
+  awk 'FNR == 2 {printf "The subdomain %s is a %s record and points to %s\n", var, $4, $5}' var="$h"
+ done
 }
 
-main() {
-    local domain="$1"
-    local subdomains=("www" "lb-01" "web-01" "web-02")
-
-    if [ -z "$2" ]; then
-        for subdomain in "${subdomains[@]}"; do
-            get_record_info "$subdomain" "$domain"
-        done
-    else
-        get_record_info "$2" "$domain"
-    fi
+subdomain_check() {
+ dig "${2}"."$1" | grep -A1 'ANSWER SECTION:' | \
+ awk 'FNR == 2 {printf "The subdomain %s is a %s record and points to %s\n", var, $4, $5}' var="$2"
 }
 
-main "$@"
-
+if [ $# -lt 1 ]
+then
+ echo "*** Provide domain name ***"
+elif [ $# -eq 1 ]
+then
+ domain_check "$1";
+else
+ subdomain_check "$1" "$2";
+fi
