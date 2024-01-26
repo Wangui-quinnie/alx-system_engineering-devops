@@ -1,12 +1,11 @@
-# Increase the ULIMIT of the default file
-file { '/etc/default/nginx':
-  ensure  => present,
-  content => "ULIMIT=4096\n",
+# Increase the ulimit of the default file
+exec { 'fix--for-nginx':
+  command => 'sed -i "s/15/4096/" /etc/default/nginx',
+  path    => '/usr/local/bin/:/bin/'
 }
 
-# Restart Nginx when the configuration changes
-service { 'nginx':
-  ensure     => running,
-  enable     => true,
-  subscribe  => File['/etc/default/nginx'],
+# Restarts Nginx when the configuration changes
+-> exec { 'nginx-restart':
+  command => 'nginx restart',
+  path    => '/etc/init.d/'
 }
